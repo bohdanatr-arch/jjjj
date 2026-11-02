@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TikTok Gifts - Exclusive Pack Opening</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            tiktok: {
+              cyan: '#00f2fe',
+              pink: '#fe2c55',
+              dark: '#08080c',
+              card: '#12121c',
+              green: '#00e676',
+              greenHover: '#00c853',
+            }
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 15px rgba(254, 44, 85, 0.6))' },
+              '50%': { transform: 'scale(1.02)', filter: 'drop-shadow(0 0 30px rgba(0, 242, 254, 0.8))' },
+            },
+            laserTear: {
+              '0%': { width: '0%', left: '0%' },
+              '50%': { width: '100%', left: '0%' },
+              '100%': { width: '0%', left: '100%' },
+            },
+            shake: {
+              '0%, 100%': { transform: 'rotate(0deg) scale(1)' },
+              '20%': { transform: 'rotate(-3deg) scale(1.03)' },
+              '40%': { transform: 'rotate(3deg) scale(1.04)' },
+              '60%': { transform: 'rotate(-2deg) scale(1.05)' },
+              '80%': { transform: 'rotate(2deg) scale(1.06)' },
+            },
+            cardFloat: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            }
+          },
+          animation: {
+            pulseGlow: 'pulseGlow 3s ease-in-out infinite',
+            shake: 'shake 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite',
+            cardFloat: 'cardFloat 4s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2a3c;
+      border-radius: 9999px;
+    }
+
+    /* Holographic card shine overlay */
+    .holo-sheen {
+      position: absolute;
+      inset: 0;
+      border-radius: 1.25rem;
+      pointer-events: none;
+      background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.08) 25%,
+        rgba(0, 242, 254, 0.25) 45%,
+        rgba(254, 44, 85, 0.35) 55%,
+        rgba(255, 215, 0, 0.3) 70%,
+        transparent 100%
+      );
+      mix-blend-mode: color-dodge;
+      transition: opacity 0.3s ease;
+      background-size: 200% 200%;
+      background-position: var(--shine-x, 50%) var(--shine-y, 50%);
+    }
+
+    /* Laser cut effect */
+    .laser-line {
+      position: absolute;
+      top: 17%;
+      left: 0;
+      height: 4px;
+      background: #ffffff;
+      box-shadow: 0 0 12px 4px #00f2fe, 0 0 25px 8px #fe2c55;
+      z-index: 40;
+      display: none;
+      border-radius: 9999px;
+    }
+
+    /* 3D Card transform wrapper */
+    .card-preserve-3d {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+  </style>
+</head>
+<body class="bg-[#050508] text-white font-sans min-h-screen flex items-center justify-center select-none overflow-x-hidden antialiased">
+
+  <!-- Ambient Background Glows -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-tiktok-pink/20 rounded-full blur-[120px]"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-tiktok-cyan/20 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-600/10 rounded-full blur-[140px]"></div>
+  </div>
+
+  <!-- Mobile App Frame Container -->
+  <div class="relative w-full max-w-[430px] h-[100dvh] md:h-[890px] md:rounded-[44px] bg-[#0c0c14]/95 border border-white/10 md:shadow-[0_0_50px_rgba(0,0,0,0.8),0_0_20px_rgba(254,44,85,0.15)] flex flex-col justify-between overflow-hidden z-10">
+
+    <!-- Sound Toggle & Status Bar -->
+    <div class="pt-3 px-5 flex items-center justify-between z-30 shrink-0">
+      <div class="flex items-center space-x-1.5 text-xs font-semibold text-gray-400 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>LIVE GIFTS</span>
+      </div>
+      
+      <div class="flex items-center space-x-2">
+        <!-- Coins Balance (Enlarged) -->
+        <div class="flex items-center space-x-2 bg-[#161622] border border-white/20 px-3.5 py-1.5 rounded-full text-base font-extrabold text-[#ffd233] shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+          <img src="https://i.postimg.cc/0yvSxMfJ/777.png" alt="Coin" class="w-5 h-5 object-contain">
+          <span id="coinsCount" class="tracking-tight">2,450</span>
+        </div>
+        
+        <!-- Audio button -->
+        <button id="soundToggleBtn" onclick="toggleAudio()" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/10 transition">
+          <i id="soundIcon" class="fa-solid fa-volume-high text-xs"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Top Action Chips Bar (Collection / Showcase / Dropdown) -->
+    <div class="px-4 py-2 flex items-center justify-between gap-2 text-xs font-medium z-30 shrink-0">
+      <button onclick="openInspectModal()" class="flex-1 py-2 px-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl flex items-center justify-center space-x-1.5 transition active:scale-95 text-gray-200">
+        <i class="fa-solid fa-boxes-stacked text-gray-400"></i>
+        <span>Collection</span>
+      </button>
+
+      <button onclick="openShowroomModal()" class="flex-1 py-2 px-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl flex items-center justify-center space-x-1.5 transition active:scale-95 text-gray-200">
+        <i class="fa-solid fa-trophy text-amber-400"></i>
+        <span>Showcase</span>
+      </button>
+
+      <button class="flex-1 py-2 px-2.5 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center space-x-1.5 text-gray-200">
+        <i class="fa-solid fa-gift text-tiktok-pink"></i>
+        <span class="truncate">TikTok Gifts</span>
+        <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
+      </button>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 1: PACK CAROUSEL / UNBOXING MAIN STAGE    -->
+    <!-- ============================================== -->
+    <div id="packStage" class="flex-1 flex flex-col items-center justify-center relative px-4 transition-all duration-500 overflow-hidden">
+      
+      <!-- Pack Carousel Wrapper (with side arrows & partial side packs) -->
+      <div class="relative w-full flex items-center justify-center my-auto">
+        <!-- Small Left Navigation Arrow -->
+        <button 
+          onclick="prevPack()" 
+          title="Previous Pack"
+          class="absolute left-1 sm:left-2 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-white/20 border border-white/20 text-white/90 hover:text-white flex items-center justify-center backdrop-blur-md transition-all active:scale-90 shadow-[0_0_12px_rgba(0,0,0,0.6)]"
+        >
+          <i class="fa-solid fa-chevron-left text-xs"></i>
+        </button>
+
+        <!-- Left Side Shadow Pack -->
+        <div onclick="prevPack()" class="absolute left-[-24%] w-[54%] opacity-35 blur-[2px] cursor-pointer hover:opacity-55 scale-90 -rotate-6 transition-all duration-300">
+          <img src="https://i.postimg.cc/dVjVDrpZ/Znimok-ekrana-2026-11-02-o-14-00-09.png" class="w-full object-contain filter drop-shadow-[0_0_15px_rgba(254,44,85,0.4)]" alt="Previous Pack">
+        </div>
+
+        <!-- Main Center Foil Pack -->
+        <div id="mainPackContainer" class="relative z-20 w-[72%] max-w-[280px] cursor-pointer group card-preserve-3d transition-transform duration-300">
+          
+          <!-- Laser Line for cut effect -->
+          <div id="laserTearLine" class="laser-line"></div>
+
+          <!-- Glow Halo behind pack -->
+          <div id="packGlowHalo" class="absolute -inset-4 bg-gradient-to-r from-tiktok-pink/30 via-tiktok-cyan/20 to-tiktok-pink/30 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition-opacity"></div>
+          
+          <!-- Foil Pack Image -->
+          <div id="foilPackWrapper" class="relative rounded-2xl overflow-hidden p-1 transition-all duration-300">
+            <img 
+              id="foilPackImg" 
+              src="https://i.postimg.cc/dVjVDrpZ/Znimok-ekrana-2026-11-02-o-14-00-09.png" 
+              alt="TikTok Gift Pack" 
+              class="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] group-hover:scale-[1.02] transition-transform duration-300 animate-cardFloat"
+            />
+          </div>
+
+          <!-- Tear Hint Text (Shown when ripping) -->
+          <div id="openingText" class="hidden absolute -bottom-7 left-1/2 -translate-x-1/2 text-center whitespace-nowrap text-xs font-bold tracking-wider text-tiktok-cyan uppercase drop-shadow-[0_0_8px_#00f2fe] animate-pulse">
+            Opening Bundle...
+          </div>
+        </div>
+
+        <!-- Right Side Shadow Pack -->
+        <div onclick="nextPack()" class="absolute right-[-24%] w-[54%] opacity-35 blur-[2px] cursor-pointer hover:opacity-55 scale-90 rotate-6 transition-all duration-300">
+          <img src="https://i.postimg.cc/dVjVDrpZ/Znimok-ekrana-2026-11-02-o-14-00-09.png" class="w-full object-contain filter drop-shadow-[0_0_15px_rgba(0,242,254,0.4)]" alt="Next Pack">
+        </div>
+
+        <!-- Small Right Navigation Arrow -->
+        <button 
+          onclick="nextPack()" 
+          title="Next Pack"
+          class="absolute right-1 sm:right-2 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-white/20 border border-white/20 text-white/90 hover:text-white flex items-center justify-center backdrop-blur-md transition-all active:scale-90 shadow-[0_0_12px_rgba(0,0,0,0.6)]"
+        >
+          <i class="fa-solid fa-chevron-right text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Pack Details & CTA -->
+      <div id="packControls" class="w-full flex flex-col items-center mt-2 mb-3 z-30 transition-all duration-300">
+        <!-- Title -->
+        <h2 id="packTitle" class="text-xl sm:text-2xl font-extrabold text-white tracking-wide text-center">
+          TikTok Gift Bundle
+        </h2>
+
+        <!-- Exclusive Live Gifts (Bright Neon Pink) -->
+        <div class="mt-2 flex items-center justify-center">
+          <span id="packSubtitleText" class="text-xs sm:text-sm font-bold text-[#fe2c55] tracking-wide drop-shadow-[0_0_10px_rgba(254,44,85,0.7)]">
+            Exclusive live gifts
+          </span>
+        </div>
+
+        <!-- Main Neon Green Button -->
+        <button 
+          id="selectPackBtn" 
+          onclick="startPackOpeningSequence()"
+          class="mt-4 w-full max-w-[340px] py-3.5 px-6 rounded-2xl bg-[#00e676] hover:bg-[#00c853] text-[#071a0e] font-extrabold text-base tracking-wider uppercase shadow-[0_4px_25px_rgba(0,230,118,0.55)] active:scale-[0.98] transition-all duration-200 flex items-center justify-center space-x-2"
+        >
+          <span>Open Pack</span>
+          <i class="fa-solid fa-bolt text-sm"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 2: CARDS REVEAL DECK STAGE               -->
+    <!-- ============================================== -->
+    <div id="cardDeckStage" class="hidden flex-1 flex flex-col items-center justify-between px-4 py-2 z-20 relative overflow-hidden">
+      
+      <!-- Progress Bar & Indicator -->
+      <div class="w-full flex flex-col items-center space-y-1.5 shrink-0 pt-1">
+        <div class="flex items-center justify-between w-full text-xs text-gray-400 px-2">
+          <span class="font-bold text-gray-300" id="cardCounterText">Card 1 of 6</span>
+          <span class="text-tiktok-cyan uppercase text-[10px] tracking-widest font-bold" id="cardRarityBadge">LEGENDARY</span>
+        </div>
+        <!-- Dots -->
+        <div class="flex items-center space-x-1.5" id="deckDotsContainer">
+          <!-- Populated in JS -->
+        </div>
+      </div>
+
+      <!-- Center Card + Info Group (Grouped together so the text sits directly below the card) -->
+      <div class="flex-1 flex flex-col items-center justify-center w-full min-h-0 my-auto py-1">
+        
+        <!-- Card 3D Frame (Adjusted to natural 10:13 card ratio) -->
+        <div 
+          id="activeCardWrapper" 
+          class="relative w-[74%] max-w-[260px] aspect-[10/13] rounded-2xl cursor-pointer card-preserve-3d transition-transform duration-300 shrink-0"
+          onmousemove="handleCardTilt(event)" 
+          onmouseleave="resetCardTilt()"
+          ontouchstart="handleTouchStart(event)"
+          ontouchmove="handleTouchMove(event)"
+          ontouchend="handleTouchEnd(event)"
+        >
+          <!-- Background Glow matching Card Rarity -->
+          <div id="cardAuraGlow" class="absolute -inset-4 rounded-3xl blur-2xl opacity-70 transition-all duration-500 bg-gradient-to-r from-tiktok-pink/50 to-tiktok-cyan/50"></div>
+
+          <!-- Card Inner Box (Плашка) with perfect centering -->
+          <div id="cardInnerFrame" class="relative w-full h-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-[#090912] flex items-center justify-center">
+            
+            <!-- Centered Card Image Wrapper -->
+            <div class="relative w-full h-full overflow-hidden flex items-center justify-center">
+              <img 
+                id="activeCardImg" 
+                src="https://i.postimg.cc/J0X18kj1/1c.png" 
+                alt="TikTok Card" 
+                class="w-full h-full object-cover rounded-2xl transition-transform duration-300 transform-gpu"
+                style="transform: scale(1.07) translate(2.5%, -3%);"
+              />
+
+              <!-- Holographic Rainbow Sheen -->
+              <div id="cardSheenOverlay" class="holo-sheen opacity-60"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Title & Metadata (Directly below the card with tight, even spacing) -->
+        <div class="text-center shrink-0 w-full mt-3 sm:mt-4 transition-all">
+          <h3 id="cardTitle" class="text-xl sm:text-2xl font-black text-white tracking-wide leading-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+            Ramadan Lantern
+          </h3>
+          <p id="cardRarityText" class="text-xs font-bold text-amber-400 uppercase tracking-widest mt-1">
+            Legendary
+          </p>
+          <p class="text-[11px] text-gray-400 mt-0.5">
+            TikTok Live Gift
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Action Buttons Row -->
+      <div class="w-full max-w-[360px] flex items-center gap-2 mb-3 shrink-0">
+        <!-- "My Gifts" Button -->
+        <button 
+          onclick="openShowroomModal()"
+          class="flex-1 py-3 px-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-bold text-sm tracking-wide transition active:scale-95 flex items-center justify-center space-x-2"
+        >
+          <i class="fa-solid fa-gift text-tiktok-pink"></i>
+          <span>My Gifts</span>
+        </button>
+
+        <!-- Next / Swipe or Final Claim Button -->
+        <button 
+          id="revealNextBtn"
+          onclick="handleNextCardClick()"
+          class="flex-1 py-3 px-4 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/20 text-white font-bold text-sm tracking-wide transition active:scale-95 flex items-center justify-center space-x-2"
+        >
+          <span id="revealBtnText">Swipe to Reveal</span>
+          <i id="revealBtnIcon" class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- BOTTOM NAVIGATION BAR (Matches Original Mobile) -->
+    <!-- ============================================== -->
+    <div class="h-16 border-t border-white/10 bg-[#090910]/95 backdrop-blur-md px-6 flex items-center justify-between text-gray-500 z-30 shrink-0">
+      <button onclick="switchTab('home')" class="flex flex-col items-center space-y-1 hover:text-white transition active:scale-90">
+        <i class="fa-solid fa-house text-lg"></i>
+      </button>
+
+      <button onclick="switchTab('diamonds')" class="flex flex-col items-center space-y-1 hover:text-white transition active:scale-90">
+        <i class="fa-solid fa-gem text-lg"></i>
+      </button>
+
+      <!-- Active Packs Icon -->
+      <button onclick="resetToPackStage()" class="flex flex-col items-center space-y-1 text-emerald-400 filter drop-shadow-[0_0_8px_rgba(0,230,118,0.7)] transition active:scale-90">
+        <i class="fa-solid fa-box-open text-xl"></i>
+      </button>
+
+      <button onclick="openInspectModal()" class="flex flex-col items-center space-y-1 hover:text-white transition active:scale-90">
+        <i class="fa-solid fa-clipboard-list text-lg"></i>
+      </button>
+
+      <button onclick="openProfileModal()" class="flex flex-col items-center space-y-1 hover:text-white transition active:scale-90">
+        <i class="fa-solid fa-user text-lg"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: VERIFICATION & CLAIM GIFTS (Screen 13)  -->
+  <!-- ============================================== -->
+  <div id="claimModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-sm bg-[#11111d] border border-white/15 rounded-3xl p-6 text-center shadow-[0_0_50px_rgba(0,0,0,0.9)] overflow-hidden">
+      
+      <!-- Top Decorative Glow -->
+      <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Icon / TikTok Badge -->
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-tiktok-pink to-tiktok-cyan p-0.5 shadow-[0_0_20px_rgba(0,242,254,0.4)]">
+        <div class="w-full h-full bg-[#0c0c14] rounded-2xl flex items-center justify-center">
+          <i class="fa-brands fa-tiktok text-3xl text-white"></i>
+        </div>
+      </div>
+
+      <h3 class="mt-4 text-xl font-black text-white">
+        Claim TikTok Rewards
+      </h3>
+      <p class="text-xs text-gray-400 mt-1">
+        6 Exclusive Live Gifts are ready to be deposited into your account.
+      </p>
+
+      <!-- Input Form -->
+      <div id="claimFormSection" class="mt-5 space-y-3">
+        <div class="relative text-left">
+          <label class="text-[11px] font-bold text-gray-400 uppercase tracking-wider ml-1">TIKTOK USERNAME</label>
+          <div class="mt-1 relative flex items-center">
+            <span class="absolute left-3.5 text-gray-400 font-bold text-sm">@</span>
+            <input 
+              id="tiktokUsernameInput" 
+              type="text" 
+              placeholder="tiktok_creator" 
+              class="w-full bg-[#161625] border border-white/15 rounded-xl pl-8 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-emerald-400 transition"
+              value="tiktok_creator"
+            />
+          </div>
+        </div>
+
+        <!-- Direct Claim Button without verification step -->
+        <button 
+          id="confirmClaimBtn"
+          onclick="executeClaimProcess()"
+          class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-sm tracking-wide uppercase transition shadow-[0_0_20px_rgba(16,185,129,0.5)] active:scale-95 flex items-center justify-center space-x-2"
+        >
+          <i class="fa-solid fa-gift text-sm"></i>
+          <span>Claim to TikTok Account</span>
+        </button>
+      </div>
+
+      <!-- Success State -->
+      <div id="claimSuccessSection" class="hidden mt-4 space-y-3">
+        <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl shadow-[0_0_25px_rgba(16,185,129,0.4)]">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h4 class="text-base font-bold text-white">Rewards Sent Successfully!</h4>
+        <p id="claimSuccessUsernameText" class="text-xs text-gray-300">
+          All 6 exclusive gifts were deposited to your TikTok Live Backpack.
+        </p>
+        <button 
+          onclick="closeClaimModalAndReset()"
+          class="mt-2 w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs uppercase tracking-wider transition shadow-lg"
+        >
+          Open Another Pack
+        </button>
+      </div>
+
+      <!-- Close Button -->
+      <button onclick="closeClaimModal()" class="mt-4 text-xs text-gray-500 hover:text-gray-300 transition">
+        Cancel
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: "WHAT'S INSIDE" / INSPECT PACK          -->
+  <!-- ============================================== -->
+  <div id="inspectModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-md bg-[#12121e] border border-white/15 rounded-3xl p-5 shadow-2xl flex flex-col max-h-[85vh]">
+      
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-sparkles text-tiktok-cyan"></i>
+          <h3 class="text-base font-black text-white">Pack Contents (6 Gifts)</h3>
+        </div>
+        <button onclick="closeInspectModal()" class="w-7 h-7 rounded-full bg-white/10 text-gray-400 hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto py-3 space-y-2 pr-1" id="inspectCardsList">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+        <span>Guaranteed: 1 Mythic + 3 Legendary</span>
+        <button onclick="closeInspectModal()" class="px-4 py-1.5 rounded-lg bg-emerald-500 text-black font-bold">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: SHOWROOM / MY GIFTS                     -->
+  <!-- ============================================== -->
+  <div id="showroomModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-md bg-[#12121e] border border-white/15 rounded-3xl p-5 shadow-2xl flex flex-col max-h-[85vh]">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-trophy text-amber-400"></i>
+          <h3 class="text-base font-black text-white">My Unlocked Gifts Showcase</h3>
+        </div>
+        <button onclick="closeShowroomModal()" class="w-7 h-7 rounded-full bg-white/10 text-gray-400 hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="py-4 grid grid-cols-3 gap-2.5 overflow-y-auto" id="unlockedGiftsGrid">
+        <!-- Injected dynamically -->
+      </div>
+
+      <button onclick="closeShowroomModal()" class="w-full py-2.5 rounded-xl bg-white/10 text-white font-bold text-xs">
+        Close Showcase
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    // ==========================================
+    // WEB AUDIO API SYNTHESIZER
+    // ==========================================
+    let audioCtx = null;
+    let isMuted = false;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function toggleAudio() {
+      isMuted = !isMuted;
+      const soundIcon = document.getElementById('soundIcon');
+      if (soundIcon) {
+        soundIcon.className = isMuted 
+          ? 'fa-solid fa-volume-xmark text-xs text-rose-400' 
+          : 'fa-solid fa-volume-high text-xs';
+      }
+      if (!isMuted) {
+        initAudio();
+        playTone(520, 'sine', 0.1, 0.1);
+      }
+    }
+
+    function playTone(freq = 440, type = 'sine', duration = 0.15, vol = 0.1) {
+      if (isMuted) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio error:', e);
+      }
+    }
+
+    function playLaserSound() {
+      if (isMuted) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(1400, now);
+        osc.frequency.exponentialRampToValueAtTime(180, now + 0.45);
+
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.linearRampToValueAtTime(0.25, now + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.5);
+      } catch (e) {
+        console.warn('Audio error:', e);
+      }
+    }
+
+    function playBurstSound() {
+      if (isMuted) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+
+        // Sparkle chord chime
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+
+          gain.gain.setValueAtTime(0.12, now + idx * 0.06);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.06 + 0.4);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(now + idx * 0.06);
+          osc.stop(now + idx * 0.06 + 0.4);
+        });
+      } catch (e) {
+        console.warn('Audio error:', e);
+      }
+    }
+
+    // ==========================================
+    // CARDS DATA DEFINITION (With Centered Offsets)
+    // ==========================================
+    const CARDS = [
+      {
+        id: 1,
+        title: "Ramadan Lantern",
+        rarity: "Legendary",
+        color: "#f59e0b",
+        glow: "rgba(245, 158, 11, 0.6)",
+        img: "https://i.postimg.cc/J0X18kj1/1c.png",
+        diamonds: 1000,
+        transform: "scale(1.07) translate(2.2%, -3%)"
+      },
+      {
+        id: 2,
+        title: "Nonstop Party (DJ Cat)",
+        rarity: "Legendary",
+        color: "#ec4899",
+        glow: "rgba(236, 72, 153, 0.6)",
+        img: "https://i.postimg.cc/VvtYwCXm/2c.png",
+        diamonds: 1500,
+        transform: "scale(1.08) translate(3.2%, -3.5%)"
+      },
+      {
+        id: 3,
+        title: "Heart Hands",
+        rarity: "Rare",
+        color: "#a855f7",
+        glow: "rgba(168, 85, 247, 0.5)",
+        img: "https://i.postimg.cc/KzwZCN3X/3c.png",
+        diamonds: 500,
+        transform: "scale(1.07) translate(2.2%, -3%)"
+      },
+      {
+        id: 4,
+        title: "Celestial Pegasus",
+        rarity: "Mythic",
+        color: "#00f2fe",
+        glow: "rgba(0, 242, 254, 0.7)",
+        img: "https://i.postimg.cc/gjhYpZ87/4c.png",
+        diamonds: 3000,
+        transform: "scale(1.08) translate(2.6%, -3.2%)"
+      },
+      {
+        id: 5,
+        title: "Golden Crown & Wings",
+        rarity: "Legendary",
+        color: "#eab308",
+        glow: "rgba(234, 179, 8, 0.6)",
+        img: "https://i.postimg.cc/gjhYpZ85/5c.png",
+        diamonds: 1200,
+        transform: "scale(1.07) translate(2.2%, -3%)"
+      },
+      {
+        id: 6,
+        title: "Dragon Universe",
+        rarity: "Mythic",
+        color: "#fe2c55",
+        glow: "rgba(254, 44, 85, 0.7)",
+        img: "https://i.postimg.cc/C58F0qbM/6c.png",
+        diamonds: 5000,
+        transform: "scale(1.08) translate(2.8%, -3.2%)"
+      }
+    ];
+
+    let currentCardIndex = 0;
+    let isOpening = false;
+    let userCoins = 2450;
+    let unlockedCards = [];
+
+    // ==========================================
+    // PACK CAROUSEL & SELECTION
+    // ==========================================
+    const PACK_VARIANTS = [
+      {
+        name: "TikTok Gift Bundle",
+        subtitle: "Exclusive live gifts",
+        hue: "hue-rotate(0deg)"
+      },
+      {
+        name: "Mythic Pegasus Bundle",
+        subtitle: "Exclusive live gifts",
+        hue: "hue-rotate(220deg)"
+      },
+      {
+        name: "Galaxy VIP Bundle",
+        subtitle: "Exclusive live gifts",
+        hue: "hue-rotate(60deg)"
+      }
+    ];
+
+    let currentPackIndex = 0;
+
+    function nextPack() {
+      if (isOpening) return;
+      currentPackIndex = (currentPackIndex + 1) % PACK_VARIANTS.length;
+      updatePackDisplay('right');
+    }
+
+    function prevPack() {
+      if (isOpening) return;
+      currentPackIndex = (currentPackIndex - 1 + PACK_VARIANTS.length) % PACK_VARIANTS.length;
+      updatePackDisplay('left');
+    }
+
+    function updatePackDisplay(dir = 'right') {
+      playTone(480, 'sine', 0.12, 0.08);
+      const pack = PACK_VARIANTS[currentPackIndex];
+      const packTitle = document.getElementById('packTitle');
+      const packSubtitle = document.getElementById('packSubtitleText');
+      const foilWrapper = document.getElementById('foilPackWrapper');
+
+      const transX = dir === 'right' ? '-15px' : '15px';
+      foilWrapper.style.transform = `translateX(${transX}) scale(0.95)`;
+      foilWrapper.style.opacity = '0.7';
+
+      setTimeout(() => {
+        if (packTitle) packTitle.innerText = pack.name;
+        if (packSubtitle) packSubtitle.innerText = pack.subtitle;
+        foilWrapper.style.filter = pack.hue;
+        foilWrapper.style.transform = 'translateX(0) scale(1)';
+        foilWrapper.style.opacity = '1';
+      }, 150);
+    }
+
+    // ==========================================
+    // PACK OPENING ANIMATION SEQUENCE
+    // ==========================================
+    function startPackOpeningSequence() {
+      if (isOpening) return;
+      isOpening = true;
+
+      initAudio();
+      playLaserSound();
+
+      const packContainer = document.getElementById('mainPackContainer');
+      const laserLine = document.getElementById('laserTearLine');
+      const openingText = document.getElementById('openingText');
+      const selectBtn = document.getElementById('selectPackBtn');
+
+      // Button feedback
+      selectBtn.disabled = true;
+      selectBtn.classList.add('opacity-50', 'pointer-events-none');
+
+      // Pack shake animation & status indicator
+      packContainer.classList.add('animate-shake');
+      openingText.classList.remove('hidden');
+
+      // Trigger laser slice across the pack's top seal
+      laserLine.style.display = 'block';
+      laserLine.style.animation = 'laserTear 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+
+      // After laser cut completes
+      setTimeout(() => {
+        playBurstSound();
+
+        // Confetti celebration burst
+        confetti({
+          particleCount: 80,
+          spread: 80,
+          origin: { y: 0.5 },
+          colors: ['#00f2fe', '#fe2c55', '#ffd700', '#00e676', '#ffffff']
+        });
+
+        // Switch to card reveal deck
+        setTimeout(() => {
+          packContainer.classList.remove('animate-shake');
+          laserLine.style.display = 'none';
+          laserLine.style.animation = '';
+          openingText.classList.add('hidden');
+          selectBtn.disabled = false;
+          selectBtn.classList.remove('opacity-50', 'pointer-events-none');
+
+          // Switch stages
+          document.getElementById('packStage').classList.add('hidden');
+          document.getElementById('cardDeckStage').classList.remove('hidden');
+
+          // Display first card
+          displayCard(0);
+          isOpening = false;
+        }, 350);
+      }, 700);
+    }
+
+    // ==========================================
+    // CARD DECK DISPLAY & NAVIGATION
+    // ==========================================
+    function displayCard(index) {
+      if (index < 0 || index >= CARDS.length) return;
+      currentCardIndex = index;
+
+      const card = CARDS[index];
+      const cardWrapper = document.getElementById('activeCardWrapper');
+      const cardImg = document.getElementById('activeCardImg');
+      const cardTitle = document.getElementById('cardTitle');
+      const cardRarityText = document.getElementById('cardRarityText');
+      const cardRarityBadge = document.getElementById('cardRarityBadge');
+      const cardCounter = document.getElementById('cardCounterText');
+      const cardGlow = document.getElementById('cardAuraGlow');
+      const revealBtn = document.getElementById('revealNextBtn');
+      const revealBtnText = document.getElementById('revealBtnText');
+      const revealBtnIcon = document.getElementById('revealBtnIcon');
+
+      // Smooth card transition
+      cardWrapper.style.transform = 'scale(0.88) rotate(-3deg)';
+      cardWrapper.style.opacity = '0.6';
+
+      setTimeout(() => {
+        cardImg.src = card.img;
+        cardImg.style.transform = card.transform || 'scale(1.07) translate(2.5%, -3%)';
+        cardTitle.innerText = card.title;
+        cardRarityText.innerText = card.rarity;
+        cardRarityText.style.color = card.color;
+        cardRarityBadge.innerText = card.rarity;
+        cardRarityBadge.style.color = card.color;
+        cardCounter.innerText = `Card ${index + 1} of ${CARDS.length}`;
+        cardGlow.style.background = `radial-gradient(circle, ${card.glow} 0%, transparent 70%)`;
+
+        cardWrapper.style.transform = 'scale(1) rotate(0deg)';
+        cardWrapper.style.opacity = '1';
+      }, 100);
+
+      // Track unlocked card
+      if (!unlockedCards.some(c => c.id === card.id)) {
+        unlockedCards.push(card);
+      }
+
+      // Update dots navigation
+      updateDots();
+
+      // Configure button state (Next card vs Final Claim)
+      const isLastCard = index === CARDS.length - 1;
+      if (isLastCard) {
+        revealBtn.className = 'flex-1 py-3 px-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-sm tracking-wide transition active:scale-95 flex items-center justify-center space-x-2 shadow-[0_0_20px_rgba(16,185,129,0.5)] animate-pulse';
+        revealBtnText.innerText = 'Claim Gifts';
+        revealBtnIcon.className = 'fa-solid fa-gift text-sm';
+      } else {
+        revealBtn.className = 'flex-1 py-3 px-4 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/20 text-white font-bold text-sm tracking-wide transition active:scale-95 flex items-center justify-center space-x-2';
+        revealBtnText.innerText = 'Swipe to Reveal';
+        revealBtnIcon.className = 'fa-solid fa-arrow-right text-xs';
+      }
+    }
+
+    function handleNextCardClick() {
+      if (currentCardIndex < CARDS.length - 1) {
+        playTone(600 + currentCardIndex * 60, 'sine', 0.15, 0.12);
+        displayCard(currentCardIndex + 1);
+      } else {
+        // Last card reached: open direct TikTok claim dialog
+        openClaimModal();
+      }
+    }
+
+    // ==========================================
+    // 3D TILT & SWIPE INTERACTION
+    // ==========================================
+    function handleCardTilt(e) {
+      const card = document.getElementById('activeCardWrapper');
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -12;
+      const rotateY = ((x - centerX) / centerX) * 12;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+
+      const sheen = document.getElementById('cardSheenOverlay');
+      const percentX = (x / rect.width) * 100;
+      const percentY = (y / rect.height) * 100;
+      sheen.style.setProperty('--shine-x', `${percentX}%`);
+      sheen.style.setProperty('--shine-y', `${percentY}%`);
+      sheen.style.opacity = '0.85';
+    }
+
+    function resetCardTilt() {
+      const card = document.getElementById('activeCardWrapper');
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      const sheen = document.getElementById('cardSheenOverlay');
+      sheen.style.opacity = '0.6';
+    }
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    function handleTouchStart(e) {
+      if (!e.touches || e.touches.length === 0) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+
+    function handleTouchMove(e) {
+      if (!e.touches || e.touches.length === 0) return;
+      const diffX = e.touches[0].clientX - touchStartX;
+      const card = document.getElementById('activeCardWrapper');
+      const rot = Math.min(Math.max(diffX * 0.1, -15), 15);
+      card.style.transform = `perspective(1000px) rotateY(${rot}deg) translateX(${diffX * 0.35}px)`;
+    }
+
+    function handleTouchEnd(e) {
+      if (!e.changedTouches || e.changedTouches.length === 0) {
+        resetCardTilt();
+        return;
+      }
+      const touchEndX = e.changedTouches[0].clientX;
+      const diffX = touchEndX - touchStartX;
+
+      resetCardTilt();
+
+      // Swipe Left -> next card
+      if (diffX < -45) {
+        handleNextCardClick();
+      } else if (diffX > 45 && currentCardIndex > 0) {
+        // Swipe Right -> previous card
+        playTone(500, 'sine', 0.12, 0.1);
+        displayCard(currentCardIndex - 1);
+      }
+    }
+
+    // ==========================================
+    // INITIALIZATION
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      populateInspectModal();
+      populateShowroom();
+      buildDots();
+    });
+
+    function buildDots() {
+      const container = document.getElementById('deckDotsContainer');
+      container.innerHTML = '';
+      CARDS.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.id = `dot-${idx}`;
+        dot.className = `h-1.5 rounded-full transition-all duration-300 ${idx === currentCardIndex ? 'w-6 bg-emerald-400' : 'w-1.5 bg-white/20'}`;
+        container.appendChild(dot);
+      });
+    }
+
+    function updateDots() {
+      CARDS.forEach((_, idx) => {
+        const dot = document.getElementById(`dot-${idx}`);
+        if (dot) {
+          if (idx === currentCardIndex) {
+            dot.className = 'h-1.5 rounded-full transition-all duration-300 w-6 bg-emerald-400';
+          } else {
+            dot.className = 'h-1.5 rounded-full transition-all duration-300 w-1.5 bg-white/20';
+          }
+        }
+      });
+    }
+
+    // ==========================================
+    // CLAIM & DIRECT ACCOUNT TRANSFER
+    // ==========================================
+    function openClaimModal() {
+      playTone(550, 'sine', 0.2);
+      document.getElementById('claimModal').classList.remove('hidden');
+      document.getElementById('claimFormSection').classList.remove('hidden');
+      document.getElementById('claimSuccessSection').classList.add('hidden');
+    }
+
+    function closeClaimModal() {
+      document.getElementById('claimModal').classList.add('hidden');
+    }
+
+    function executeClaimProcess() {
+      const usernameInput = document.getElementById('tiktokUsernameInput');
+      const rawUser = usernameInput.value.trim() || 'tiktok_creator';
+      const cleanUser = rawUser.startsWith('@') ? rawUser : `@${rawUser}`;
+
+      // Instant transfer to user's TikTok account without verification delays
+      document.getElementById('claimFormSection').classList.add('hidden');
+      document.getElementById('claimSuccessSection').classList.remove('hidden');
+      document.getElementById('claimSuccessUsernameText').innerText = 
+        `All 6 gifts were transferred directly to ${cleanUser}'s TikTok Live Backpack.`;
+
+      // Coin reward
+      userCoins += 6500;
+      document.getElementById('coinsCount').innerText = userCoins.toLocaleString();
+
+      // Confetti & victory sound
+      confetti({
+        particleCount: 120,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+      playBurstSound();
+    }
+
+    function closeClaimModalAndReset() {
+      closeClaimModal();
+      resetToPackStage();
+    }
+
+    function resetToPackStage() {
+      document.getElementById('cardDeckStage').classList.add('hidden');
+      document.getElementById('packStage').classList.remove('hidden');
+      currentCardIndex = 0;
+      updateDots();
+    }
+
+    // ==========================================
+    // INSPECT & SHOWROOM MODALS
+    // ==========================================
+    function openInspectModal() {
+      playTone(400, 'triangle', 0.1);
+      document.getElementById('inspectModal').classList.remove('hidden');
+    }
+
+    function closeInspectModal() {
+      document.getElementById('inspectModal').classList.add('hidden');
+    }
+
+    function populateInspectModal() {
+      const container = document.getElementById('inspectCardsList');
+      container.innerHTML = '';
+      CARDS.forEach(card => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center space-x-3 bg-white/5 border border-white/10 p-2.5 rounded-xl hover:bg-white/10 transition';
+        item.innerHTML = `
+          <div class="w-12 h-16 rounded-lg overflow-hidden border border-white/20 shrink-0 flex items-center justify-center bg-black/40 relative">
+            <img src="${card.img}" class="w-full h-full object-cover transform-gpu" style="transform: ${card.transform || 'scale(1.07)'}" alt="${card.title}">
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="text-sm font-bold text-white truncate">${card.title}</h4>
+            <span class="text-[10px] uppercase font-bold tracking-wider" style="color: ${card.color}">${card.rarity}</span>
+            <div class="flex items-center space-x-1 text-[11px] text-amber-300 mt-0.5">
+              <img src="https://i.postimg.cc/0yvSxMfJ/777.png" alt="Coin" class="w-3.5 h-3.5 object-contain inline-block">
+              <span>${card.diamonds} Coins</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-[11px] font-semibold text-gray-400">100% Drop</span>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function openShowroomModal() {
+      playTone(420, 'triangle', 0.1);
+      populateShowroom();
+      document.getElementById('showroomModal').classList.remove('hidden');
+    }
+
+    function closeShowroomModal() {
+      document.getElementById('showroomModal').classList.add('hidden');
+    }
+
+    function populateShowroom() {
+      const grid = document.getElementById('unlockedGiftsGrid');
+      grid.innerHTML = '';
+      CARDS.forEach(card => {
+        const isUnlocked = unlockedCards.some(c => c.id === card.id);
+        const cardBox = document.createElement('div');
+        cardBox.className = `flex flex-col items-center p-2 rounded-xl border ${isUnlocked ? 'border-emerald-500/40 bg-emerald-500/10' : 'border-white/10 bg-white/5 opacity-40'} transition`;
+        cardBox.innerHTML = `
+          <div class="w-full aspect-[10/13] rounded-lg overflow-hidden flex items-center justify-center bg-black/40 relative">
+            <img src="${card.img}" class="w-full h-full object-cover transform-gpu ${isUnlocked ? '' : 'filter grayscale'}" style="transform: ${card.transform || 'scale(1.07)'}" alt="${card.title}">
+          </div>
+          <span class="text-[10px] font-bold text-white truncate w-full text-center mt-1.5">${card.title}</span>
+          <span class="text-[9px] uppercase font-semibold" style="color: ${card.color}">${isUnlocked ? 'Collected' : 'Locked'}</span>
+        `;
+        grid.appendChild(cardBox);
+      });
+    }
+
+    function openProfileModal() {
+      openShowroomModal();
+    }
+
+    function switchTab(tab) {
+      playTone(350, 'sine', 0.08);
+      if (tab === 'home' || tab === 'diamonds') {
+        resetToPackStage();
+      }
+    }
+  </script>
+</body>
+</html>
